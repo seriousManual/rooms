@@ -3,7 +3,7 @@ import { readable } from 'svelte/store';
 
 export default readable([], (set) => {
     const now = moment()
-    const then = now.clone().add(7, 'days')
+    const then = now.clone().add(2, 'days')
 
     const days = []
     while (now < then) {

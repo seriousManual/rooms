@@ -33,6 +33,8 @@
 	import userState from './state/user'
 	import daysState from './state/days'
 
+	import matrixState from './state/matrix'
+
 	import Reservations from './Reservations'
 </script>
 
@@ -44,6 +46,8 @@
 			value={$userState.name}
 		/>
 	</div>
+
+	{$matrixState}
 
 	<table>
 		<tr>

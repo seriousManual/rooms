@@ -10,7 +10,6 @@ export default derived(
 	([$reservations, $days, $rooms, $user]) => {
         const ret = {}
 
-debugger;
         for (const day of $days) {
             ret[day] = {}
             const userReservationsOfDay = $reservations.filter(reservation => reservation.date === day && reservation.reserverName === $user.name)
@@ -20,6 +19,7 @@ debugger;
 
             for (const room of $rooms) {
                 const reservationsOfDayAndRoom = $reservations.filter(reservation => reservation.room.name === room.name && reservation.date === day)
+                const hasBookedThisRoom = reservationsOfDayAndRoom.find(reservation => reservation.reserverName === $user.name);
 
                 let state = 'available';
                 if (reservationsOfDayAndRoom.length > 0 && reservationsOfDayAndRoom.length < room.capacity) {
@@ -31,13 +31,16 @@ debugger;
                 const isBookable = validName && !hasBookedAnywhere && reservationsOfDayAndRoom.length < room.capacity
 
                 ret[day][room.name] = {
+                    day,
+                    roomName: room.name,
                     state,
                     isBookable,
+                    hasBookedThisRoom,
                     reservers: reservationsOfDayAndRoom.map(reservation => reservation.reserverName)
                 }
             }
         }
-console.log(ret)
+
         return ret;
     }
 );

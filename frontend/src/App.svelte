@@ -25,7 +25,6 @@
     td.capacityReached {
         background-color: red
     }
-
 </style>
 
 <script>
@@ -46,9 +45,6 @@
 			value={$userState.name}
 		/>
 	</div>
-
-	{$matrixState}
-
 	<table>
 		<tr>
 			<th></th>
@@ -61,7 +57,7 @@
 				<th>Room {room.name}</th>
 				{#each $daysState as day}
 					<td>
-						<Reservations day={day} room={room} />
+						<Reservations data={$matrixState[day][room.name]} />
 					</td>
 				{/each}
 			</tr>

@@ -24,15 +24,21 @@
 <script>
     import reservationsState from './state/reservations'
     import userState from './state/user'
+    import matrixState from './state/matrix'
 
-    export let data;
+    export let day;
+    export let roomName;
+
+    let data = {}
+
+    $: data = $matrixState[day][roomName]
 
     function createReservation() {
-        reservationsState.createReservation(data.day, data.roomName, $userState.name)
+        reservationsState.createReservation(day, roomName, $userState.name)
     }
 
     function cancelReservation() {
-        reservationsState.cancelReservation(data.day, data.roomName, $userState.name)
+        reservationsState.cancelReservation(day, roomName, $userState.name)
     }
 </script>
 

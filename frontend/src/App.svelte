@@ -57,7 +57,7 @@
 				<th>Room {room.name}</th>
 				{#each $daysState as day}
 					<td>
-						<Reservations data={$matrixState[day][room.name]} />
+						<Reservations day={day} roomName={room.name} />
 					</td>
 				{/each}
 			</tr>
